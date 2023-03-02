@@ -1,0 +1,13 @@
+@import './variables';
+@import './pages/pages';
+@import './components/components';
+
+body {
+    margin: 0;
+    background: #ffffff;
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+}

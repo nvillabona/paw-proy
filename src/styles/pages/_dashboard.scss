@@ -1,0 +1,9 @@
+.postContainer{
+    width: 50vw; // Ocupa la mitad del viewport en desktop
+    margin: 0 auto; // Centra el contenedor horizontalmente en desktop
+  
+    @media only screen and (max-width: 767px) {
+      width: 90vw; // Ocupa todo el viewport en mobile
+      margin: 0 auto; // Elimina el margen horizontal en mobile
+    }
+}
