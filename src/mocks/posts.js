@@ -68,7 +68,7 @@ const posts = [
     },
     {
         id: 4,
-        author: "pawsomepuppies",
+        author: "pawsandclaws",
         title: "My cuddly pup",
         content: "Meet my new puppy, Fido! He loves to snuggle and play fetch.",
         imageUrl: "https://www.saga.co.uk/contentlibrary/saga/publishing/verticals/home-and-garden/pets/dogs/new-puppy-getting-it-right-on-the-first-night-434396968-768.jpg",

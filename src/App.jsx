@@ -15,6 +15,7 @@ function App() {
                     <Route path={routes.login.path} element={routes.login.component} />
                     <Route element={<Layout />}>
                         <Route path={routes.dashboard.path} element={routes.dashboard.component} />
+                        <Route path={routes.profile.path} element={routes.profile.component} />
                     </Route>
                 </Routes>
             </BrowserRouter>

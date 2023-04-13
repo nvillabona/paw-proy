@@ -1,6 +1,7 @@
 import React from 'react'
 import Login from "../pages/auth/Login";
 import Dashboard from '../pages/dashboard/Dashboard';
+import Profile from '../pages/profile/Profile';
 
 const routes = {
     login: {
@@ -10,6 +11,10 @@ const routes = {
     dashboard: {
         path: '/dashboard',
         component: <Dashboard />
+    },
+    profile: {
+        path: '/profile',
+        component: <Profile />
     }
 }
 
