@@ -4,7 +4,6 @@ import {
     Card,
     CardContent,
     CardHeader,
-    Avatar,
     IconButton,
     CardMedia,
     Typography,
@@ -19,12 +18,12 @@ import {
     Button
 } from '@mui/material'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import { styled } from '@mui/material/styles';
 import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import CommentsDisabledIcon from '@mui/icons-material/CommentsDisabled';
+import StringAvatar from './StringAvatar';
 
 // eslint-disable-next-line react/prop-types
 
@@ -35,7 +34,7 @@ const ExpandMore = styled((props) => {
             !expand ? <InsertCommentIcon {...other} /> : <CommentsDisabledIcon {...other} />
         }
     </>
-})(({ theme, expand }) => ({
+})(({ theme }) => ({
     cursor: 'pointer',
     marginLeft: 'auto',
     transition: theme.transitions.create('transform', {
@@ -67,9 +66,7 @@ const Post = ({ post }) => {
             <CardHeader
                 avatar={
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Avatar sx={{ bgcolor: 'secondary.main' }} aria-label="recipe">
-                            {post.author.charAt(0)}
-                        </Avatar>
+                        <StringAvatar userName={post.author} />
                         <Typography variant="body2" color="text.secondary" ml={2}>
                             {post.author}
                         </Typography>
@@ -113,24 +110,20 @@ const Post = ({ post }) => {
                     <List>
                         {
                             post.comments.map(comment => (
-                                <>
-                                    <ListItem>
+                                <div  key={comment.id}>
+                                    <ListItem >
                                         <ListItemAvatar>
-                                            <Avatar sx={{ bgcolor: 'secondary.main' }} aria-label="user">
-                                                {comment.author.charAt(0)}
-                                            </Avatar>
+                                            <StringAvatar  userName={comment.author}/>
                                         </ListItemAvatar>
                                         <ListItemText primary={`${comment.author}:`} secondary={comment.content} />
                                     </ListItem>
                                     <Divider variant="inset" component="li" />
-                                </>
+                                </div>
                             ))
                         }
                         <ListItem>
                             <ListItemAvatar>
-                                <Avatar sx={{ bgcolor: 'secondary.main' }} aria-label="user">
-                                    {'N'}
-                                </Avatar>
+                                <StringAvatar userName={'N'} />
                             </ListItemAvatar>
                             <TextField fullWidth size='small' />
                             <Button variant='contained' size='medium' sx={{ml: 1}}>Post</Button>
@@ -140,6 +133,6 @@ const Post = ({ post }) => {
             </Collapse>
         </Card>
     )
-}
+};
 
 export default Post

@@ -16,6 +16,7 @@ function App() {
                     <Route element={<Layout />}>
                         <Route path={routes.dashboard.path} element={routes.dashboard.component} />
                         <Route path={routes.profile.path} element={routes.profile.component} />
+                        <Route path={routes.messages.path} element={routes.messages.component} />
                     </Route>
                 </Routes>
             </BrowserRouter>

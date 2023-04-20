@@ -14,22 +14,19 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Logo from '../../assets/pawConnect-no-bg.png'
 import useSecurity from '../../hooks/useSecurity';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import routes from '../../routes/routes';
 
 export default function PawAppBar() {
-  const [drawerIsOpen, setDrawingIsOpen] = React.useState(false);
+  const [drawerIsOpen, setDrawerIsOpen] = React.useState(false);
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { handleLogout } = useSecurity();
   const navigate = useNavigate();
   const location = useLocation()
-
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -44,9 +41,14 @@ export default function PawAppBar() {
     navigate(routes.profile.path)
   }
 
+  const handleNavigate = (route) => {
+    setDrawerIsOpen(false)
+    navigate(route)
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }} className="pawAppBar">
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
           <IconButton
             size="large"
@@ -54,7 +56,7 @@ export default function PawAppBar() {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
-            onClick={() => setDrawingIsOpen(true)}
+            onClick={() => setDrawerIsOpen(true)}
           >
             <MenuIcon />
           </IconButton>
@@ -63,8 +65,11 @@ export default function PawAppBar() {
               <img src={Logo} className='logo-img' />
             </Link>
           </Box>
-          {auth && (
-            <div>
+          <IconButton
+            color="inherit"
+          >
+            <ShoppingCartIcon />
+          </IconButton>
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -93,14 +98,12 @@ export default function PawAppBar() {
                 <MenuItem onClick={handleProfile}>Profile</MenuItem>
                 <MenuItem onClick={handleLogout}>Log Out</MenuItem>
               </Menu>
-            </div>
-          )}
         </Toolbar>
         <Drawer
           variant="temporary"
           anchor="left"
           open={drawerIsOpen}
-          onClose={() => setDrawingIsOpen(false)}
+          onClose={() => setDrawerIsOpen(false)}
           sx={{
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 300 },
           }}
@@ -124,7 +127,7 @@ export default function PawAppBar() {
             <ListItem disablePadding>
               <ListItemButton
                 selected={location.pathname === routes.dashboard.path}
-                onClick={() => navigate(routes.dashboard.path)}
+                onClick={() => handleNavigate(routes.dashboard.path)}
               >
                 <ListItemText primary='Home' />
               </ListItemButton>
@@ -132,9 +135,17 @@ export default function PawAppBar() {
             <ListItem disablePadding>
               <ListItemButton
                 selected={location.pathname === routes.profile.path}
-                onClick={() => navigate(routes.profile.path)}
+                onClick={() => handleNavigate(routes.profile.path)}
               >
                 <ListItemText primary='Profile' />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton
+                selected={location.pathname === routes.messages.path}
+                onClick={() => handleNavigate(routes.messages.path)}
+              >
+                <ListItemText primary='Messages' />
               </ListItemButton>
             </ListItem>
           </List>

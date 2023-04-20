@@ -1,5 +1,6 @@
 import React from 'react'
-import { Card, Avatar, CardContent, CardHeader, TextField, Button, Box } from '@mui/material'
+import { Card, CardContent, CardHeader, TextField, Button, Box } from '@mui/material'
+import StringAvatar from './StringAvatar'
 
 const NewPost = () => {
     return (
@@ -7,9 +8,7 @@ const NewPost = () => {
             <Card sx={{ my: 2 }}>
                 <CardHeader
                     avatar={
-                        <Avatar sx={{ bgcolor: 'secondary.main' }} aria-label="user">
-                            {'N'}
-                        </Avatar>
+                        <StringAvatar userName={'N'} />
                     }
                     title="New Post"
                 />

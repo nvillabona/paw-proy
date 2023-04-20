@@ -1,44 +1,17 @@
-import { Avatar, Box, Card, CardContent, Grid, Typography, Button } from '@mui/material'
+import {  Box, Card, CardContent, Grid, Typography, Button } from '@mui/material'
 import React from 'react'
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import EmailIcon from '@mui/icons-material/Email';
+import StringAvatar from '../common/StringAvatar'
 
-function stringToColor(string) {
-    let hash = 0;
-    let i;
 
-    /* eslint-disable no-bitwise */
-    for (i = 0; i < string.length; i += 1) {
-        hash = string.charCodeAt(i) + ((hash << 5) - hash);
-    }
-
-    let color = '#';
-
-    for (i = 0; i < 3; i += 1) {
-        const value = (hash >> (i * 8)) & 0xff;
-        color += `00${value.toString(16)}`.slice(-2);
-    }
-    /* eslint-enable no-bitwise */
-
-    return color;
-}
-
-function stringAvatar(name) {
-    return {
-        sx: {
-            bgcolor: stringToColor(name),
-        },
-        children: name.charAt(0),
-    };
-}
 
 const ProfileInfoCard = ({ userName, postsCount }) => {
-    console.log(userName);
     return (
         <Card sx={{ my: 2 }}>
             <CardContent>
                 <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-                    <Avatar {...stringAvatar(userName)} />
+                    <StringAvatar userName={userName} />
                     <Typography variant="h6" color="initial">{`@${userName}`}</Typography>
                     <Grid container sx={{ mt: 2 }}>
                         <Grid item xs={4}>
