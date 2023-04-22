@@ -19,10 +19,11 @@ import Logo from '../../assets/pawConnect-no-bg.png'
 import useSecurity from '../../hooks/useSecurity';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import routes from '../../routes/routes';
+import Cart from '../cart/Cart';
 
 export default function PawAppBar() {
   const [drawerIsOpen, setDrawerIsOpen] = React.useState(false);
-  const [auth, setAuth] = React.useState(true);
+  const [cartIsOpen, setCartIsOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { handleLogout } = useSecurity();
   const navigate = useNavigate();
@@ -32,12 +33,12 @@ export default function PawAppBar() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleCloseDrawer = () => {
     setAnchorEl(null);
   };
 
   const handleProfile = () => {
-    handleClose();
+    handleCloseDrawer();
     navigate(routes.profile.path)
   }
 
@@ -67,6 +68,7 @@ export default function PawAppBar() {
           </Box>
           <IconButton
             color="inherit"
+            onClick={()=>setCartIsOpen(true)}
           >
             <ShoppingCartIcon />
           </IconButton>
@@ -93,7 +95,7 @@ export default function PawAppBar() {
                   horizontal: 'right',
                 }}
                 open={Boolean(anchorEl)}
-                onClose={handleClose}
+                onClose={handleCloseDrawer}
               >
                 <MenuItem onClick={handleProfile}>Profile</MenuItem>
                 <MenuItem onClick={handleLogout}>Log Out</MenuItem>
@@ -150,6 +152,7 @@ export default function PawAppBar() {
             </ListItem>
           </List>
         </Drawer>
+        <Cart isOpen={cartIsOpen} handleClose={()=>setCartIsOpen(false)}/>
       </AppBar>
     </Box>
   );

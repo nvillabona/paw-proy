@@ -39,17 +39,17 @@ const Chat = () => {
         <div>
             <Grid container>
                 <Grid item xs={12} >
-                    <Typography variant="h5" className="header-message">Chat</Typography>
+                    <Typography variant="h5" className="header-message">Messages🐾</Typography>
                 </Grid>
             </Grid>
             <Grid container component={Paper} sx={classes.chatSection}>
                 <Grid item sx={classes.borderRight500} xs={3}>
                     <List>
-                        <ListItem button key="RemySharp">
+                        <ListItem >
                             <ListItemIcon>
-                                <StringAvatar userName='RemySharp' />
+                                <StringAvatar userName='pawsandclaws' />
                             </ListItemIcon>
-                            <ListItemText primary="John Wick"></ListItemText>
+                            <ListItemText primary="pawsandclaws"></ListItemText>
                         </ListItem>
                     </List>
                     <Divider />
@@ -58,24 +58,24 @@ const Chat = () => {
                     </Grid>
                     <Divider />
                     <List>
-                        <ListItem button key="RemySharp">
+                        <ListItem selected>
                             <ListItemIcon>
-                                <Avatar alt="Remy Sharp" src="https://material-ui.com/static/images/avatar/1.jpg" />
+                                <StringAvatar userName='fluffypaws12'/>
                             </ListItemIcon>
-                            <ListItemText primary="Remy Sharp">Remy Sharp</ListItemText>
+                            <ListItemText primary="fluffypaws12">fluffypaws12</ListItemText>
                             <ListItemText secondary="online" align="right"></ListItemText>
                         </ListItem>
-                        <ListItem button key="Alice">
+                        <ListItem >
                             <ListItemIcon>
-                                <Avatar alt="Alice" src="https://material-ui.com/static/images/avatar/3.jpg" />
+                                <StringAvatar userName='purrfectkitten' />
                             </ListItemIcon>
-                            <ListItemText primary="Alice">Alice</ListItemText>
+                            <ListItemText primary="purrfectkitten">purrfectkitten</ListItemText>
                         </ListItem>
-                        <ListItem button key="CindyBaker">
+                        <ListItem >
                             <ListItemIcon>
-                                <Avatar alt="Cindy Baker" src="https://material-ui.com/static/images/avatar/2.jpg" />
+                                <StringAvatar userName='enzothecat' />
                             </ListItemIcon>
-                            <ListItemText primary="Cindy Baker">Cindy Baker</ListItemText>
+                            <ListItemText primary="enzothecat">enzothecat</ListItemText>
                         </ListItem>
                     </List>
                 </Grid>
