@@ -24,6 +24,7 @@ import { styled } from '@mui/material/styles';
 import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import CommentsDisabledIcon from '@mui/icons-material/CommentsDisabled';
 import StringAvatar from './StringAvatar';
+import { formatDate } from '../../utils/utils';
 
 // eslint-disable-next-line react/prop-types
 
@@ -47,16 +48,6 @@ const Post = ({ post }) => {
 
     const [expanded, setExpanded] = useState(false);
 
-    function randomDate() {
-        const startDate = new Date('2023-02-01');
-        const endDate = new Date();
-        const date = new Date(startDate.getTime() + Math.random() * (endDate.getTime() - startDate.getTime()));
-        const day = date.getDate().toString().padStart(2, '0');
-        const month = (date.getMonth() + 1).toString().padStart(2, '0');
-        const year = date.getFullYear().toString();
-        return `${day}/${month}/${year}`;
-    }
-
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
@@ -66,9 +57,9 @@ const Post = ({ post }) => {
             <CardHeader
                 avatar={
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <StringAvatar userName={post.author} />
+                        <StringAvatar userName={post.creator} />
                         <Typography variant="body2" color="text.secondary" ml={2}>
-                            {post.author}
+                            {post.creator}
                         </Typography>
                     </Box>
                 }
@@ -78,14 +69,17 @@ const Post = ({ post }) => {
                     </IconButton>
                 }
                 title={post.title}
-                subheader={randomDate()}
+                subheader={formatDate(post.createdAt)}
             />
-            <CardMedia
-                component="img"
-                height="400"
-                image={post.imageUrl}
-                alt={post.title}
-            />
+            {
+                post.imageUrl && 
+                <CardMedia
+                    component="img"
+                    height="400"
+                    image={post.imageUrl}
+                    alt={post.title}
+                />
+            }
             <CardContent>
                 <Typography variant="body2" color="text.secondary">
                     {post.content}
@@ -113,9 +107,9 @@ const Post = ({ post }) => {
                                 <div  key={comment.id}>
                                     <ListItem >
                                         <ListItemAvatar>
-                                            <StringAvatar  userName={comment.author}/>
+                                            <StringAvatar  userName={comment.user}/>
                                         </ListItemAvatar>
-                                        <ListItemText primary={`${comment.author}:`} secondary={comment.content} />
+                                        <ListItemText primary={`${comment.user}:`} secondary={comment.content} />
                                     </ListItem>
                                     <Divider variant="inset" component="li" />
                                 </div>

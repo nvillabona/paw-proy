@@ -13,6 +13,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path={routes.login.path} element={routes.login.component} />
+                    <Route path={routes.register.path} element={routes.register.component} />
                     <Route element={<Layout />}>
                         <Route path={routes.dashboard.path} element={routes.dashboard.component} />
                         <Route path={routes.profile.path} element={routes.profile.component} />
