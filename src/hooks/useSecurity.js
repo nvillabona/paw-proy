@@ -40,6 +40,9 @@ const useSecurity = () => {
 
     const handleLogout = () => {
         navigate(routes.login.path)
+        localStorage.removeItem('token')
+        localStorage.removeItem('userId')
+        localStorage.removeItem('username')
 
     }
 
